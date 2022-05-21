@@ -33,4 +33,19 @@ public class JugadorSer {
     public void postJugador(Jugador jugador) {
         jugadores.add(jugador);
     }
+
+    public void putJugador(long id, Jugador jugador) {
+        for (int i = 0; i < jugadores.size(); i++) {
+            Jugador actual = jugadores.get(i);
+
+            if (actual.getId() == id) {
+                jugadores.set(i, jugador);
+                break;
+            }
+        }
+    }
+
+    public void deleteJugador(long id) {
+        jugadores.removeIf(x -> x.getId() == id);
+    }
 }

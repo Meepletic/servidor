@@ -33,4 +33,20 @@ public class JugadorCon {
     public void postJugador(@RequestBody Jugador jugador){
         servicio.postJugador(jugador);
     }
+
+
+    // PUT
+
+    @PutMapping("/jugadores/modificar/{id}")
+    public void putJugador(@PathVariable long id, @RequestBody Jugador jugador){
+        servicio.putJugador(id, jugador);
+    }
+
+
+    // DELETE
+    
+    @DeleteMapping("/jugadores/eliminar/{id}")
+    public void deleteJugador(@PathVariable long id){
+        servicio.deleteJugador(id);
+    }
 }
