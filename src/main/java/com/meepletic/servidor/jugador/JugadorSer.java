@@ -2,6 +2,7 @@ package com.meepletic.servidor.jugador;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,10 +11,12 @@ import java.util.List;
 @Service
 public class JugadorSer {
 
-    private List<Jugador> jugadores = Arrays.asList(
-            new Jugador(1L, "Víctor", "viictor"),
-                new Jugador(2L, "Anabel", "anabeel")
-        );
+    private List<Jugador> jugadores = new ArrayList<>(
+            Arrays.asList(
+                    new Jugador(1L, "Víctor", "viictor"),
+                    new Jugador(2L, "Anabel", "anabeel")
+            )
+    );
 
 
     public List<Jugador> getJugadores() {
@@ -25,5 +28,9 @@ public class JugadorSer {
                 .filter(x -> x.getId() == id)
                 .findFirst()
                 .get();
+    }
+
+    public void postJugador(Jugador jugador) {
+        jugadores.add(jugador);
     }
 }
