@@ -19,4 +19,11 @@ public class JugadorSer {
     public List<Jugador> getJugadores() {
         return jugadores;
     }
+
+    public Jugador getJugador(long id) {
+        return jugadores.stream()
+                .filter(x -> x.getId() == id)
+                .findFirst()
+                .get();
+    }
 }
