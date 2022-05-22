@@ -1,5 +1,6 @@
 package com.meepletic.servidor.jugador;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,41 +12,30 @@ import java.util.List;
 @Service
 public class JugadorSer {
 
-    private List<Jugador> jugadores = new ArrayList<>(
-            Arrays.asList(
-                    new Jugador(1L, "Víctor", "viictor"),
-                    new Jugador(2L, "Anabel", "anabeel")
-            )
-    );
+    @Autowired
+    private JugadorRep repositorio;
 
 
     public List<Jugador> getJugadores() {
+        List<Jugador> jugadores = new ArrayList<>();
+        repositorio.findAll().forEach(jugadores::add);
+
         return jugadores;
     }
 
     public Jugador getJugador(long id) {
-        return jugadores.stream()
-                .filter(x -> x.getId() == id)
-                .findFirst()
-                .get();
+        return repositorio.findById(id).orElse(null);
     }
 
     public void postJugador(Jugador jugador) {
-        jugadores.add(jugador);
+        repositorio.save(jugador);
     }
 
-    public void putJugador(long id, Jugador jugador) {
-        for (int i = 0; i < jugadores.size(); i++) {
-            Jugador actual = jugadores.get(i);
-
-            if (actual.getId() == id) {
-                jugadores.set(i, jugador);
-                break;
-            }
-        }
+    public void putJugador(Jugador jugador) {
+        repositorio.save(jugador);
     }
 
     public void deleteJugador(long id) {
-        jugadores.removeIf(x -> x.getId() == id);
+        repositorio.deleteById(id);
     }
 }

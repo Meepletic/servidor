@@ -46,7 +46,7 @@ public class JugadorCon {
      *
      * @param jugador   Jugador a añadir
      */
-    @PostMapping("/jugadores/nuevo")
+    @PostMapping("/jugadores")
     public void postJugador(@RequestBody Jugador jugador){
         servicio.postJugador(jugador);
     }
@@ -57,12 +57,11 @@ public class JugadorCon {
     /**
      * Sustituye los datos de un jugador por otros nuevos.
      *
-     * @param id        Identificador del jugador a sustituir
      * @param jugador   Jugador con los nuevos datos
      */
-    @PutMapping("/jugadores/modificar/{id}")
-    public void putJugador(@PathVariable long id, @RequestBody Jugador jugador){
-        servicio.putJugador(id, jugador);
+    @PutMapping("/jugadores")
+    public void putJugador(@RequestBody Jugador jugador){
+        servicio.putJugador(jugador);
     }
 
 
@@ -73,7 +72,7 @@ public class JugadorCon {
      *
      * @param id    Identificador del jugador a eliminar
      */
-    @DeleteMapping("/jugadores/eliminar/{id}")
+    @DeleteMapping("/jugadores/{id}")
     public void deleteJugador(@PathVariable long id){
         servicio.deleteJugador(id);
     }
