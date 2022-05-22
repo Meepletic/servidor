@@ -1,7 +1,14 @@
 package com.meepletic.servidor.jugador;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+
+@Entity
 public class Jugador {
 
+    @Id
     private long id;
     private String nombre;
     private String usuario;
